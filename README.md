@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+## Frontend for the To Do List Project
+This is a ToDoList App. User can add a task by entering the task description and clicking the Add Task button.
+The tasks that have been entered are listed and there is an option to edit the task description and mark the task complete. The tasks are retrieved and persisted via the api server
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Frontend Technologies:
+Created Reactjs project using vite. Styling done using tailwindcss
 
-Currently, two official plugins are available:
+### How to use:
+Run `npm install` on the root directory 
+Run `npm run dev` 
+The client can be accessed at the link provided once the app starts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Improvements:
+👉Improve the styling of the app.
+👉Style the delete button to display a delete icon
+👉Style the edit button
+👉Show the end of editing a description by pressing enter rather than the done button
