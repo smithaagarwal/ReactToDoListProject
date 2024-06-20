@@ -1,4 +1,5 @@
 import Task from "../types/task.types";
+import { BASE_URL } from "./constants";
 
 const updateTask = async (task: Task) => {
   const requestOptions = {
@@ -7,8 +8,7 @@ const updateTask = async (task: Task) => {
     body: JSON.stringify(task),
   };
   try {
-    const url = "http://localhost:8888/tasks/" + task.id;
-    const response = await fetch(url, requestOptions);
+    const response = await fetch(`${BASE_URL}/${task.id}`, requestOptions);
 
     if (response.status === 200) {
       await response.json();

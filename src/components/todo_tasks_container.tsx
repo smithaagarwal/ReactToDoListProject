@@ -3,7 +3,7 @@ import ToDoTaskList from "./todo_tasks_list";
 import ToDoTasksHeader from "./todo_tasks_header";
 import { Task } from "../types/task.types";
 import { AddTask } from "./AddTask";
-const url = "http://localhost:8888/tasks";
+import { BASE_URL } from "./constants";
 
 export const ToDoTasksContainer: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -14,7 +14,7 @@ export const ToDoTasksContainer: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(BASE_URL);
 
         const json = await response.json();
 

@@ -5,6 +5,7 @@ import DeleteButton from "./delete_button";
 import EditButton from "./edit_button";
 import Description from "./description";
 import updateTask from "./update_task";
+import { BASE_URL } from "./constants";
 
 export interface ToDoTaskProps {
   task: Task;
@@ -43,8 +44,7 @@ const ToDoTask: React.FC<ToDoTaskProps> = ({ task, onDelete }) => {
     };
 
     try {
-      const url = "http://localhost:8888/tasks/" + task.id;
-      const response = await fetch(url, requestOptions);
+      const response = await fetch(`${BASE_URL}/${task.id}`, requestOptions);
 
       if (response.status === 204) {
         onDelete(task);

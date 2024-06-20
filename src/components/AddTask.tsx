@@ -3,6 +3,7 @@ import ErrorMessage from "./error_message";
 import validateDescription from "./validate/validate_description";
 import Task from "../types/task.types";
 import Toast from "./toast/toast";
+import { BASE_URL } from "./constants";
 
 interface AddTaskProps {
   tasks: Task[];
@@ -33,8 +34,7 @@ export const AddTask: React.FC<AddTaskProps> = ({
     };
 
     try {
-      const url = "http://localhost:8888/tasks";
-      const response = await fetch(url, requestOptions);
+      const response = await fetch(BASE_URL, requestOptions);
 
       if (response.status === 201) {
         const newTask: Task = await response.json();
