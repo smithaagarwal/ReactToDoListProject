@@ -26,10 +26,9 @@ export const AddTask: React.FC = () => {
       const response = await fetch(url, requestOptions);
 
       if (response.status === 201) {
-        const json = await response.json();
-        alert(JSON.stringify(json));
+        await response.json();
       } else {
-        alert("error");
+        alert("error fetching tasks");
       }
     } catch (e) {
       console.error(e);

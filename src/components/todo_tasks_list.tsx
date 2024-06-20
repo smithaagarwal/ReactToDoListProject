@@ -3,13 +3,24 @@ import { Task } from "../types/task.types";
 
 interface ToDoTaskListProps {
   tasks: Task[];
+  onHandleDeleteTasks: (remainingTasks: Task[]) => void;
 }
 
-const ToDoTaskList: React.FC<ToDoTaskListProps> = (props) => {
+const ToDoTaskList: React.FC<ToDoTaskListProps> = ({
+  tasks,
+  onHandleDeleteTasks,
+}) => {
+  const onHandleDelete = (taskToDelete: Task) => {
+    onHandleDeleteTasks(tasks.filter((task) => task.id !== taskToDelete.id));
+  };
   return (
     <>
-      {props.tasks?.map((task) => (
-        <ToDoTask key={task.id} task={task} />
+      {tasks?.map((task) => (
+        <ToDoTask
+          key={task.id}
+          task={task}
+          onDelete={() => onHandleDelete(task)}
+        />
       ))}
     </>
   );
