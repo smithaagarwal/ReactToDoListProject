@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import ToDoTaskList from "./todo_tasks_list";
 import ToDoTasksHeader from "./todo_tasks_header";
 import { Task } from "../types/task.types";
+import { AddTask } from "./AddTask";
 const url = "http://localhost:8888/tasks";
 
 export const ToDoTasksContainer: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const onHandleDeleteTasks = (tasks: Task[]) => {
+  const onHandleUpdateTasks = (tasks: Task[]) => {
     setTasks(tasks);
   };
 
@@ -23,7 +24,7 @@ export const ToDoTasksContainer: React.FC = () => {
       }
     };
     fetchData();
-  }, [tasks]);
+  }, []);
 
   return (
     <>
@@ -33,10 +34,11 @@ export const ToDoTasksContainer: React.FC = () => {
           <ToDoTasksHeader />
           <ToDoTaskList
             tasks={tasks}
-            onHandleDeleteTasks={onHandleDeleteTasks}
+            onHandleDeleteTasks={onHandleUpdateTasks}
           />
         </tbody>
       </table>
+      <AddTask tasks={tasks} onHandleAddTasks={onHandleUpdateTasks} />
     </>
   );
 };

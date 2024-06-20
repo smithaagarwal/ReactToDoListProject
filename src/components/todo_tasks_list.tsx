@@ -1,5 +1,5 @@
 import ToDoTask from "./todo_task";
-import { Task } from "../types/task.types";
+import Task from "../types/task.types";
 
 interface ToDoTaskListProps {
   tasks: Task[];

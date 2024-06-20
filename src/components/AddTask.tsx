@@ -1,8 +1,16 @@
 import { useState } from "react";
 import ErrorMessage from "./error_message";
 import validateDescription from "./validate/validate_description";
+import Task from "../types/task.types";
 
-export const AddTask: React.FC = () => {
+interface AddTaskProps {
+  tasks: Task[];
+  onHandleAddTasks: (allTasks: Task[]) => void;
+}
+export const AddTask: React.FC<AddTaskProps> = ({
+  tasks,
+  onHandleAddTasks,
+}) => {
   const [description, setDescription] = useState<string>("");
 
   const onDescriptionChange = (description: string) => {
@@ -26,7 +34,9 @@ export const AddTask: React.FC = () => {
       const response = await fetch(url, requestOptions);
 
       if (response.status === 201) {
-        await response.json();
+        const newTask: Task = await response.json();
+        const updatedTasks = [...tasks, newTask];
+        onHandleAddTasks(updatedTasks);
       } else {
         alert("error fetching tasks");
       }
@@ -54,3 +64,5 @@ export const AddTask: React.FC = () => {
     </>
   );
 };
+
+export default AddTask;
