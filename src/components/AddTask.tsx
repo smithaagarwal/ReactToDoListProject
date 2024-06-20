@@ -2,7 +2,7 @@ import { useState } from "react";
 import ErrorMessage from "./error_message";
 import validateDescription from "./validate/validate_description";
 
-export const AddItem: React.FC = () => {
+export const AddTask: React.FC = () => {
   const [description, setDescription] = useState<string>("");
 
   const onDescriptionChange = (description: string) => {
