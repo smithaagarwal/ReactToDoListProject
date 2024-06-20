@@ -1,5 +1,5 @@
-import { AddTask } from "./components/AddTask";
 import ToDoTasksContainer from "./components/todo_tasks_container";
+import "./index.css";
 
 function App() {
   return (

@@ -2,6 +2,7 @@ import { useState } from "react";
 import ErrorMessage from "./error_message";
 import validateDescription from "./validate/validate_description";
 import Task from "../types/task.types";
+import Toast from "./toast/toast";
 
 interface AddTaskProps {
   tasks: Task[];
@@ -12,6 +13,8 @@ export const AddTask: React.FC<AddTaskProps> = ({
   onHandleAddTasks,
 }) => {
   const [description, setDescription] = useState<string>("");
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const onDescriptionChange = (description: string) => {
     setDescription(description);
@@ -37,6 +40,16 @@ export const AddTask: React.FC<AddTaskProps> = ({
         const newTask: Task = await response.json();
         const updatedTasks = [...tasks, newTask];
         onHandleAddTasks(updatedTasks);
+
+        // Set toast message
+        setToastMessage(`Task ${newTask.description} got added!`);
+        setShowToast(true);
+
+        // Reset toast after 3 seconds
+        setTimeout(() => {
+          setShowToast(false);
+          setToastMessage("");
+        }, 2000);
       } else {
         alert("error fetching tasks");
       }
@@ -45,23 +58,36 @@ export const AddTask: React.FC<AddTaskProps> = ({
     }
   };
   return (
-    <>
+    <div className="mb-4">
       <form onSubmit={handleSubmit}>
         <input
+          className="border border-gray-300 p-2 rounded-md mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Add a new task"
           type="text"
           id="description"
           name="description"
           onChange={(event) => onDescriptionChange(event.target.value)}
         ></input>
-        <ErrorMessage messages={validateDescription(description)} />
         <button
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
           type="submit"
           disabled={!(validateDescription(description).length === 0)}
         >
           Add Task
         </button>
+        {<ErrorMessage messages={validateDescription(description)} />}
       </form>
-    </>
+
+      {showToast && (
+        <Toast
+          message={toastMessage}
+          onClose={() => {
+            setShowToast(false);
+            setToastMessage("");
+          }}
+        />
+      )}
+    </div>
   );
 };
 

@@ -27,9 +27,9 @@ export const ToDoTasksContainer: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <h2>All Tasks:</h2>
-      <table>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
+      <AddTask tasks={tasks} onHandleAddTasks={onHandleUpdateTasks} />
+      <table className="min-w-full bg-white shadow rounded-md">
         <tbody>
           <ToDoTasksHeader />
           <ToDoTaskList
@@ -38,8 +38,7 @@ export const ToDoTasksContainer: React.FC = () => {
           />
         </tbody>
       </table>
-      <AddTask tasks={tasks} onHandleAddTasks={onHandleUpdateTasks} />
-    </>
+    </div>
   );
 };
 export default ToDoTasksContainer;
